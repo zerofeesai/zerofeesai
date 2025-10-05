@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI All-in-One Tools</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; margin: 0; background: #f5f5f5; }
+    header { background: #222; color: #fff; text-align: center; padding: 20px; }
+    h1 { margin: 0; font-size: 1.8em; }
+    nav { display: flex; flex-wrap: wrap; justify-content: center; background: #333; }
+    nav button {
+      background: #444; border: none; color: #fff; padding: 10px 15px; margin: 4px;
+      border-radius: 6px; cursor: pointer; font-size: 0.9em;
+    }
+    nav button:hover { background: #666; }
+    section { display: none; padding: 20px; max-width: 600px; margin: auto; background: #fff; border-radius: 10px; margin-top: 20px; box-shadow: 0 0 8px rgba(0,0,0,0.1); }
+    textarea, input {
+      width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px;
+      font-family: inherit;
+    }
+    button.action { background: #007bff; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    button.action:hover { background: #0056b3; }
+    .output { background: #f1f1f1; border-radius: 6px; padding: 10px; margin-top: 10px; min-height: 60px; text-align: left; white-space: pre-wrap; }
+    footer { text-align: center; padding: 20px; font-size: 0.9em; color: #555; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🤖 Free AI Tools | फ्री एआई वेबसाइट</h1>
+    <p>Chat • Images • Writer • Translate • Resume Builder</p>
+  </header>
+
+  <nav>
+    <button onclick="showTab('chatbot')">💬 Chatbot</button>
+    <button onclick="showTab('image')">🎨 Image</button>
+    <button onclick="showTab('writer')">✍️ Writer</button>
+    <button onclick="showTab('translate')">🌐 Translate</button>
+    <button onclick="showTab('resume')">💼 Resume</button>
+  </nav>
+
+  <!-- Chatbot -->
+  <section id="chatbot">
+    <h2>AI Chatbot 🤖</h2>
+    <p>Type your question below / नीचे अपना सवाल लिखें:</p>
+    <textarea id="chatInput" placeholder="Hi! How can I help you?"></textarea>
+    <button class="action" onclick="aiChat()">Send</button>
+    <div class="output" id="chatOutput"></div>
+  </section>
+
+  <!-- Image Generator -->
+  <section id="image">
+    <h2>AI Image Generator 🎨</h2>
+    <p>Describe your image / अपनी इमेज का वर्णन करें:</p>
+    <input id="imgPrompt" placeholder="A astronaut walking on the moon">
+    <button class="action" onclick="aiImage()">Generate</button>
+    <div class="output" id="imgOutput"></div>
+  </section>
+
+  <!-- Writer -->
+  <section id="writer">
+    <h2>AI Text Writer ✍️</h2>
+    <p>Enter a topic / एक विषय लिखें:</p>
+    <input id="writeTopic" placeholder="Write a blog about AI future">
+    <button class="action" onclick="aiWrite()">Generate</button>
+    <div class="output" id="writeOutput"></div>
+  </section>
+
+  <!-- Translator -->
+  <section id="translate">
+    <h2>AI Translator 🌐</h2>
+    <textarea id="translateInput" placeholder="Type text to translate (English ↔ Hindi)"></textarea>
+    <button class="action" onclick="aiTranslate()">Translate</button>
+    <div class="output" id="translateOutput"></div>
+  </section>
+
+  <!-- Resume Builder -->
+  <section id="resume">
+    <h2>AI Resume Builder 💼</h2>
+    <input id="name" placeholder="Your Name / आपका नाम">
+    <input id="job" placeholder="Job Title / जॉब टाइटल">
+    <textarea id="skills" placeholder="Skills / कौशल"></textarea>
+    <button class="action" onclick="aiResume()">Generate</button>
+    <div class="output" id="resumeOutput"></div>
+  </section>
+
+  <footer>Made with ❤️ by You | Hosted Free on GitHub Pages</footer>
+
+  <script>
+    // tab switching
+    function showTab(id) {
+      document.querySelectorAll('section').forEach(sec => sec.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+    }
+    showTab('chatbot'); // default
+
+    // Placeholder AI logic (use APIs later)
+    function aiChat() {
+      const q = document.getElementById('chatInput').value.trim();
+      if (!q) return;
+      document.getElementById('chatOutput').textContent = "Thinking... 🤔";
+      setTimeout(() => {
+        document.getElementById('chatOutput').textContent = "AI: I think that's a great question! (This is a demo reply.)";
+      }, 1200);
+    }
+
+    function aiImage() {
+      const p = document.getElementById('imgPrompt').value.trim();
+      if (!p) return;
+      document.getElementById('imgOutput').innerHTML = "Generating image... 🪄";
+      setTimeout(() => {
+        document.getElementById('imgOutput').innerHTML = `<img src="https://source.unsplash.com/600x400/?${encodeURIComponent(p)}" style="width:100%;border-radius:8px;">`;
+      }, 1200);
+    }
+
+    function aiWrite() {
+      const t = document.getElementById('writeTopic').value.trim();
+      if (!t) return;
+      document.getElementById('writeOutput').textContent = "Writing... ✍️";
+      setTimeout(() => {
+        document.getElementById('writeOutput').textContent =
+          `Title: ${t}\n\nAI Text: ${t} is a trending topic. Artificial intelligence is transforming the world — from automation to creativity! (Demo text)`;
+      }, 1200);
+    }
+
+    function aiTranslate() {
+      const text = document.getElementById('translateInput').value.trim();
+      if (!text) return;
+      document.getElementById('translateOutput').textContent = "Translating... 🌐";
+      setTimeout(() => {
+        document.getElementById('translateOutput').textContent = "Translation (demo): " + (text.includes("नमस्ते") ? "Hello!" : "नमस्ते!");
+      }, 1200);
+    }
+
+    function aiResume() {
+      const n = document.getElementById('name').value.trim();
+      const j = document.getElementById('job').value.trim();
+      const s = document.getElementById('skills').value.trim();
+      if (!n || !j) return;
+      document.getElementById('resumeOutput').textContent = "Building resume... 🧩";
+      setTimeout(() => {
+        document.getElementById('resumeOutput').textContent =
+          `Name: ${n}\nJob Title: ${j}\nSkills: ${s}\n\nProfile: ${n} is a skilled ${j} with expertise in ${s}. Passionate about innovation and AI.`;
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
